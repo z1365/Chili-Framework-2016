@@ -47,6 +47,8 @@ private:
     int x = 200;
     int y = 300;
     int vx, vy = 0;
+    int xt = 400;
+    int yt = 370;
     bool inhibitLeft, inhibitRight, inhibitUp, inhibitDown = false;
     Color mainColor = { 0xFFFFFFFF };
     bool alterShape = false;

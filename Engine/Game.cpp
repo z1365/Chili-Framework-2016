@@ -91,71 +91,70 @@ void Game::UpdateModel()
     {
         vx = vy = 0;
     }
-
-
-
-    if (x + vx <= 790 && x + vx >= 0) 
-    { 
-        x += vx; 
-    } else 
-    { 
-        vx = 0; 
+     if (   (x + 10 + vx >= xt && x + vx <= xt + 10) 
+         && (y + 10 + vy >= yt && y + vy <= yt + 10)
+        )
+    {
+        mainColor = { 0xFF10FF10 };
+        vx = vy = 0;
     }
-    if (y + vy <= 590 && y + vy >= 0) 
-    { 
-        y += vy; 
-    } else
+    else {
+        mainColor = { 0xFFFFFFFF };
+    }
+
+    if ((x + vx <= gfx.ScreenWidth - 11) && (x + vx >= 0))
+    {
+        x += vx;
+    }
+    else
+    {
+        vx = 0;
+    }
+    if ((y + vy <= gfx.ScreenHeight - 11) && (y + vy >= 0))
+    {
+        y += vy;
+    }
+    else
     {
         vy = 0;
     }
 
     alterShape = wnd.kbd.KeyIsPressed(VK_SHIFT);
 
-    if (wnd.kbd.KeyIsPressed(VK_CONTROL))
-    {
-        mainColor = { 0xFF10FF10 };
-    } else {
-        mainColor = { 0xFFFFFFFF };
-    }
+
 }
 
 void Game::ComposeFrame()
 {
 
-    if (alterShape) 
+    if (alterShape)
     {
+        // прицел
         // вертикальная палочка прицела
         gfx.PutPixel(x + 5, y + 0, mainColor);
         gfx.PutPixel(x + 5, y + 1, mainColor);
         gfx.PutPixel(x + 5, y + 2, mainColor);
-    //    gfx.PutPixel(x + 5, y + 3, mainColor);
-    //    gfx.PutPixel(x + 5, y + 7, mainColor);
         gfx.PutPixel(x + 5, y + 8, mainColor);
         gfx.PutPixel(x + 5, y + 9, mainColor);
         gfx.PutPixel(x + 5, y + 10, mainColor);
-        
-       // горизонтальная палочка прицела
+
+        // горизонтальная палочка прицела
         gfx.PutPixel(x + 0, y + 5, mainColor);
         gfx.PutPixel(x + 1, y + 5, mainColor);
         gfx.PutPixel(x + 2, y + 5, mainColor);
-    //    gfx.PutPixel(x + 3, y + 5, mainColor);
-    //    gfx.PutPixel(x + 7, y + 5, mainColor);
         gfx.PutPixel(x + 8, y + 5, mainColor);
         gfx.PutPixel(x + 9, y + 5, mainColor);
         gfx.PutPixel(x + 10, y + 5, mainColor);
-
-
-
     }
     else {
-
+        // бокс прицела
         gfx.PutPixel(x + 0, y + 0, mainColor);
         gfx.PutPixel(x + 1, y + 0, mainColor);
         gfx.PutPixel(x + 2, y + 0, mainColor);
         gfx.PutPixel(x + 6, y + 0, mainColor);
         gfx.PutPixel(x + 7, y + 0, mainColor);
         gfx.PutPixel(x + 8, y + 0, mainColor);
-        
+
         gfx.PutPixel(x + 0, y + 8, mainColor);
         gfx.PutPixel(x + 1, y + 8, mainColor);
         gfx.PutPixel(x + 2, y + 8, mainColor);
@@ -176,4 +175,30 @@ void Game::ComposeFrame()
         gfx.PutPixel(x + 0, y + 8, mainColor);
 
     }
+    // бокс цели
+    gfx.PutPixel(xt + 0, yt + 0, 100,0,50);
+    gfx.PutPixel(xt + 1, yt + 0, 100,0,50);
+    gfx.PutPixel(xt + 2, yt + 0, 100,0,50);
+    gfx.PutPixel(xt + 6, yt + 0, 100,0,50);
+    gfx.PutPixel(xt + 7, yt + 0, 100,0,50);
+    gfx.PutPixel(xt + 8, yt + 0, 100,0,50);
+
+    gfx.PutPixel(xt + 0, yt + 8, 100,0,50);
+    gfx.PutPixel(xt + 1, yt + 8, 100,0,50);
+    gfx.PutPixel(xt + 2, yt + 8, 100,0,50);
+    gfx.PutPixel(xt + 6, yt + 8, 100,0,50);
+    gfx.PutPixel(xt + 7, yt + 8, 100,0,50);
+    gfx.PutPixel(xt + 8, yt + 8, 100,0,50);
+
+    gfx.PutPixel(xt + 8, yt + 0, 100,0,50);
+    gfx.PutPixel(xt + 8, yt + 1, 100,0,50);
+    gfx.PutPixel(xt + 8, yt + 2, 100,0,50);
+    gfx.PutPixel(xt + 8, yt + 6, 100,0,50);
+    gfx.PutPixel(xt + 8, yt + 7, 100,0,50);
+
+    gfx.PutPixel(xt + 0, yt + 1, 100,0,50);
+    gfx.PutPixel(xt + 0, yt + 2, 100,0,50);
+    gfx.PutPixel(xt + 0, yt + 6, 100,0,50);
+    gfx.PutPixel(xt + 0, yt + 7, 100,0,50);
+    gfx.PutPixel(xt + 0, yt + 8, 100,0,50);
 }
