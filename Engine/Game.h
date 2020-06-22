@@ -36,20 +36,53 @@ private:
     void UpdateModel();
     /********************************/
     /*  User Functions              */
+    void DrawBox(int x, int y, int r, int g, int b);
+    
+
+    bool IsOnScreen(int x, int y, int width, int height);
+    bool IsCollided(int x, int y, int width, int height, int target_x, int target_y, int target_w, int target_h);
     /********************************/
 private:
     MainWindow& wnd;
     Graphics gfx;
     /********************************/
     /*  User Variables              */
-    /********************************/
 
-    int x = 200;
-    int y = 300;
-    int vx, vy = 0;
-    int xt = 400;
-    int yt = 370;
-    bool inhibitLeft, inhibitRight, inhibitUp, inhibitDown = false;
-    Color mainColor = { 0xFFFFFFFF };
-    bool alterShape = false;
+    int cursor_x = 10;
+    int cursor_y = 10;
+
+    //скорость в координатах для курсора
+    int vx = 0;
+    int vy = 0;
+    //приращение скорости в пикселях
+    int dv = 1;
+
+
+    //координаты препятствий
+    int barrier_0_x = 50;
+    int barrier_1_x = 150;
+    int barrier_2_x = 250;
+    int barrier_3_x = 350;
+    int barrier_0_y = 70;
+    int barrier_1_y = 27;
+    int barrier_2_y = 498;
+    int barrier_3_y = 159;
+    
+    //флаги нажатия клавиш
+    bool inhibitLeft = false;
+    bool inhibitRight = false;
+    bool inhibitUp = false;
+    bool inhibitDown = false;
+
+    // признак во что то упёрся
+    bool collision = false;
+
+    int cursor_color_r = 0;
+    int cursor_color_g = 255;
+    int cursor_color_b = 0;
+
+    int barrier_color_r = 255;
+    int barrier_color_g = 255;
+    int barrier_color_b = 255;
+    /********************************/
 };
